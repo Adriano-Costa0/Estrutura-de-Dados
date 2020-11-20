@@ -1,2 +1,2 @@
 # Estrutura-de-Dados
-Repositório voltado para publicação de exercicios sobre estrutura de dados . 
+Repositório voltado para publicação de exercicios sobre estrutura de dados . :computer::anger:
