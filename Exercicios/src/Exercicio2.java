@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Exercicio2 {
     public static void main(String[] args) throws Exception {
-        int lista[] = new int[10];
+        int lista[] = new int[15];
         Scanner scan = new Scanner(System.in);
         float soma = 0;
         float produto = 1;
