@@ -5,25 +5,23 @@ public class Exercicio4 {
 
     public static void main(String[] args) throws IOException {
 
-        int vetor[] = {56, 63, 68, 756, 852, 3, 45, 1, 25, 89, 12, 9, 10};
+        int vetor[] = { 56, 63, 68, 756, 852, 3, 45, 1, 25, 89, 12, 9, 10 };
         int num = vetor.length;
-
-        
 
         long tempoInicial = System.currentTimeMillis();
 
-        radixSort(vetor, num);
-        gnomeSort(vetor, num);
-        countingSort(vetor);
+        //radixSort(vetor, num);
+        // gnomeSort(vetor, num);
+         countingSort(vetor);
 
         long tempoFinal = System.currentTimeMillis();
 
         print(vetor, num);
-        System.out.println("Tempo: "+ (tempoFinal - tempoInicial)+" ms");
+        System.out.println("Tempo: " + (tempoFinal - tempoInicial) + " ms");
 
     }
 
-    static void radixSort(int array[], int valor) {
+    public static void radixSort(int array[], int valor) {
 
         int maior = getMaior(array, valor);
 
@@ -31,12 +29,7 @@ public class Exercicio4 {
             count(array, valor, exp);
     }
 
-    static void print(int array[], int num) {
-        for (int i = 0; i < num; i++)
-            System.out.print(array[i] + " ");
-    }
-
-    static int getMaior(int array[], int valor) {
+    public static int getMaior(int array[], int valor) {
         int maior = array[0];
         for (int i = 1; i < valor; i++)
             if (array[i] > maior)
@@ -44,7 +37,7 @@ public class Exercicio4 {
         return maior;
     }
 
-    static void count(int array[], int valor, int exp) {
+    public static void count(int array[], int valor, int exp) {
         int arrayAux[] = new int[valor];
         int count[] = new int[10];
         Arrays.fill(count, 0);
@@ -64,9 +57,7 @@ public class Exercicio4 {
             array[i] = arrayAux[i];
     }
 
-   
-
-    static void gnomeSort(int array[], int valor) {
+    public static void gnomeSort(int array[], int valor) {
         int index = 0;
 
         while (index < valor) {
@@ -109,11 +100,9 @@ public class Exercicio4 {
         }
     }
 
-    static void imprimir(int[] array) {
-        for (int i = 0; i < array.length; i++) {
+    public static void print(int array[], int num) {
+        for (int i = 0; i < num; i++)
             System.out.print(array[i] + " ");
-        }
-        System.out.println("");
     }
 
 }
