@@ -1,71 +1,112 @@
+import java.util.Random;
+
 public class mainArvore {
     public static void main(String[] args) {
-
-        int qtd = 0;
-        int i = 2;
         NoArvore raiz = new NoArvore();
-        NoArvore arvore = new NoArvore();
+        int array[] = new int[10];
+        int arrayArvore[] = new int[51001];
 
-        while (qtd < 500) {
-            if (verificaPrimo(i)) {
+        arrayArvore = populaArvore(raiz, 5000);
+
+        array =  buscaPrimos();
+        verifica(array,arrayArvore, raiz);
+
+    }
+
+    public static int [] buscaPrimos(){
+        int array[] = new int[10];
+        int qtd = 0;
+
+        for(int i=1; i < 100; i++){
+
+            boolean isPrimo = true;
+        
+            for(int j=2; j < i ; j++){
+            
+            if(i % j == 0){
+            isPrimo = false;
+            break;
+            }
+            }
+            
+            if(isPrimo && qtd <10){
+                array[qtd] = i;
                 qtd++;
             }
-            if (qtd == 500) {
-                raiz = arvore.InsereRaiz(raiz, i);
-                break;
             }
-            i++;
+        return array;
+    }
+        
+    public static int [] populaArvore(NoArvore raiz, int valor){
+        int array[] = new int[valor];
+        Random aleatorio = new Random();
+        
+        int qtd = 0;
+        int resultado = 0;
+        while(qtd < valor) {
+                resultado = aleatorio.nextInt(9999);
+                raiz.Insere(raiz, resultado );
+                array[qtd] = resultado;
+                qtd++;
+                raiz.vetor[raiz.pos] = resultado; 
+                raiz.pos++;
+        }
+        return array;
+    }
+   
+    public static void verifica(int array[], int arrayArvore[], NoArvore raiz){
+        Random aleatorio = new Random();
+
+        searchPrimo(array, raiz);
+        multi(arrayArvore, raiz);
+        
+        
+        int qtd = 0;
+        int resultado = 0;
+        while(qtd < 100) {
+                resultado = aleatorio.nextInt(9999);
+                raiz.Insere(raiz, resultado );
+                qtd++;
+                raiz.vetor[raiz.pos] = resultado; 
+                raiz.pos++;
         }
 
-        populaArvore(raiz);
-        removeMenor(raiz);
-        raiz.Imprimi_Cres(raiz);
+        searchPrimo(array, raiz);
+        //multi(arrayArvore, raiz);
+
         
 
+       
     }
 
-    public static boolean verificaPrimo(int valor) {
-        for (int j = 2; j < valor; j++) {
-            if (valor % j == 0)
-                return false;
+    public static void searchPrimo(int array[], NoArvore raiz){
+        NoArvore arvore = new NoArvore();
+        raiz = raiz.balanceiaArvore(raiz);
+
+        for (int i = 0; i < array.length; i++){
+            arvore = raiz.Search(raiz, array[i]);
+            if(arvore == null){
+                System.out.println("O numero primo "+ array[i]+ " não esta na arvore!");
+            }
+            else {
+                System.out.println("O numero primo "+ array[i]+ " esta na arvore!");
+                raiz.Retira(raiz, array[i]);
+            }
         }
-        return true;
     }
 
-    public static void populaArvore(NoArvore raiz){
-        int qtd = 0;
-        int i = 2;
-        while(qtd < 1000) {
-            if(verificaPrimo(i)){
-                raiz.Insere(raiz, i);
-                qtd++;
+    public static void multi(int arrayArvore[], NoArvore raiz){
+
+        raiz = raiz.balanceiaArvore(raiz);
+        System.out.println("Multiplos de 5: ");
+        for(int num: arrayArvore){
+            if(num%5 == 0){
+                System.out.println("[Multiplo de 5] -> "+num);
+                raiz.Retira(raiz, num);
+            }
             
         }
-        i++;
-        
     }
 }
 
-    public static void removeMenor(NoArvore raiz){
-        int qtd = 0;
-        int indice = 2;
-        int i = 2;
-        NoArvore arvore = new NoArvore();
-
-        while(qtd < 1000) {
-            if(verificaPrimo(i)){
-                if(i == indice || i >= indice){
-                    arvore.Retira(raiz,i);
-                    indice += 100;
-                }
-                qtd++;
-            }
-            if(qtd == 1000){
-                break;
-            }
-            i++;
-                
-            }
-        }
-    }
 
