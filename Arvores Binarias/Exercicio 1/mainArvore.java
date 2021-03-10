@@ -4,7 +4,7 @@ public class mainArvore {
     public static void main(String[] args) {
         NoArvore raiz = new NoArvore();
         int array[] = new int[10];
-        int arrayArvore[] = new int[51001];
+        int arrayArvore[] = new int[5101];
 
         arrayArvore = populaArvore(raiz, 5000);
 
@@ -72,7 +72,7 @@ public class mainArvore {
         }
 
         searchPrimo(array, raiz);
-        //multi(arrayArvore, raiz);
+        multi(arrayArvore, raiz);
 
         
 
